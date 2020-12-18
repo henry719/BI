@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% block title %}主页{% endblock %}
+{% block content %}
+{% if request.session.is_login %}
+<body>
+<div id="main" style="width: 600px;height:400px;"></div>
+<script>
+    // 绘制图表。
+    echarts.init(document.getElementById('main')).setOption({
+        series: {
+            type: 'pie',
+            data: [
+                {name: 'A', value: 1212},
+                {name: 'B', value: 2323},
+                {name: 'C', value: 1919}
+            ]
+        }
+    });
+</script>
+</body>
+{% else %}
+<h1>你尚未登录，只能访问公开内容！</h1>
+{% endif %}
+{% endblock %}

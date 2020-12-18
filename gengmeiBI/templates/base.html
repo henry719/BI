@@ -1,0 +1,83 @@
+{% load staticfiles %}
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+    <title>{% block title %}GM_BI_DASHBOARD{% endblock %}</title>
+
+    <!-- Bootstrap -->
+    <link href="{% static 'plugins/bootstrap-3.3.7/dist/css/bootstrap.css' %}" rel="stylesheet">
+
+    <!-- 引入 ECharts 文件 -->
+    <script src="{% static 'js/echarts_disk/echarts.js' %}"></script>
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+
+    <script src="https://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/pace-progressbar@1.0.2/pace.min.js"></script>
+
+    {% block css %}{% endblock %}
+</head>
+<body>
+<div id="navigation">
+<nav role="navigation" class="navbar navbar-default">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" data-toggle="collapse" data-target="#navbar-collapse" aria-expanded="false" class="navbar-toggle collapsed">
+            <span class="sr-only">切换导航条</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </button>
+            <a class="navbar-brand" href="#">GM_BI</a>
+        </div>
+        <div id="navbar-collapse" class="collapse navbar-collapse">
+            <ul class="nav navbar-nav navbar-left">
+                <li id="nav-index"><a href="https://echarts.apache.org/zh/index.html">首页</a></li>
+                <li id="nav-download" class="dropdown">
+                    <a href="#" data-toggle="dropdown" class="dropdown-toggle">TAB1<b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="https://echarts.apache.org/zh/download.html">下载</a></li>
+                    </ul>
+                </li>
+                <li id="nav-examples"><a href="#" data-toggle="dropdown" class="dropdown-toggle">TAB2<b
+                        class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="https://echarts.apache.org/examples/zh/index.html">实例 v4.9</a></li>
+                        <li><a href="https://echarts.apache.org/next/examples/zh/index.html">实例 v5.x</a></li>
+                    </ul>
+                </li>
+                <li id="nav-resources"><a href="#" data-toggle="dropdown" class="dropdown-toggle">TAB3<b class="caret"></b></a></li>
+                <li><a href="http://140.143.221.54:8090/login#/import">数据拉取</a></li>
+                <li><a href="http://maidian.prod.gengmei/#/login">埋点管理平台</a></li>
+
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                {% if request.session.is_login %}
+                <li><a href="#">当前在线:{{ request.session.user_name }}</a></li>
+                <li><a href="/logout/">登出</a></li>
+                {% else %}
+                <li id="nav-homeen"><a href="/login/">登录</a></li>
+                <li id="nav-apache"><a href="/register/">注册</a></li>
+                {% endif %}
+            </ul>
+        </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
+
+</nav>
+</div>
+{% block content %}{% endblock %}
+
+
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="{% static 'js/jquery-3.5.1/jquery-3.5.1.js' %}"></script>
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="{% static 'plugins/bootstrap-3.3.7/dist/js/bootstrap.js' %}"></script>
+</body>
+</html>
